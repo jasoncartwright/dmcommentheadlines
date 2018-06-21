@@ -1,0 +1,42 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+- url: /_ah/(mapreduce|queue|warmup|start|stop).*
+  script: commenthead.wsgi.application
+  login: admin
+  secure: always
+
+- url: /_ah/internalupload.*
+  script: commenthead.wsgi.application
+  secure: always
+
+- url: /static
+  static_dir: static/
+  secure: always
+
+# Set Django admin to be login:admin as well as Django's is_staff restriction
+- url: /admin.*
+  script: commenthead.wsgi.application
+  secure: always
+  login: admin
+
+- url: /.*
+  script: commenthead.wsgi.application
+
+skip_files:
+  - ^manage\.py$
+  - ^README\.md$
+  - ^install_deps$
+  - ^requirements/.*\.txt$
+  - ^sitepackages/dev.*
+  - ^.*\.(egg|dist)-info/.*$
+
+  # Defaults.
+  - ^(.*/)?#.*#$
+  - ^(.*/)?.*~$
+  - ^(.*/)?.*\.py[co]$
+  - ^(.*/)?.*/RCS/.*$
+  - ^(.*/)?\..*$
