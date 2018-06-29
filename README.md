@@ -1,3 +1,3 @@
-# Daily Mail Comment Headlines 
+# Daily Mail But With The Comments For Headlines
 
-https://daily-mail-comment-headlines.appspot.com/
+https://www.daily-mail-but-with-the-comments-for-headlines.com/
