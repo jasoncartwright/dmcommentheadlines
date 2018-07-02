@@ -35,12 +35,12 @@ def crawl(request):
             article_re = re.compile(article_id_regex)
             headline_id = article_re.findall(headline_url)[0]
             headline_comment_url = dm_comment_url % headline_id
-            logging.info(headline_comment_url)
+            # logging.info(headline_comment_url)
             headline_comment_url_result = urlfetch.fetch(headline_comment_url, deadline=30, headers = {'User-Agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:61.0) Gecko/20100101 Firefox/61.0", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", "X-Requested-With": "XMLHttpRequest"})
             # logging.info(headline_comment_url_result.content)
             try:
                 comment = json.loads(headline_comment_url_result.content)["payload"]["page"][0]["message"]
-                logging.info(comment)
+                # logging.info(comment)
                 headline.string = comment
                 headline["href"] = "http://www.dailymail.co.uk%s" % headline["href"]
             except IndexError:
