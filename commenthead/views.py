@@ -42,6 +42,7 @@ def crawl(request):
                 comment = json.loads(headline_comment_url_result.content)["payload"]["page"][0]["message"]
                 logging.info(comment)
                 headline.string = comment
+                headline["href"] = "http://www.dailymail.co.uk%s" % headline["href"]
             except IndexError:
                 pass
 
